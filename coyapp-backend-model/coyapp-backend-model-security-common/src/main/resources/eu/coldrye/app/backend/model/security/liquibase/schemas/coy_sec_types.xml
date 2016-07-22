@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet
+        id="coyapp-security-coy_sec_types"
+        author="cklein"
+        context="deploy"
+        runAlways="false">
+
+        <sql dbms="postgresql">
+            CREATE TYPE SecUserStateType AS ENUM
+            (
+            'ACTIVE', 'INACTIVE', 'DEACTIVATED', 'BANNED',
+            'BLOCKED', 'SIGNED_OFF', 'SIGNED_ON', 'VERIFIED'
+            )
+        </sql>
+        <sql dbms="postgresql">
+            CREATE TYPE SecUserAuthType AS ENUM
+            (
+            'PASS', 'LDAP', 'OAUT'
+            )
+        </sql>
+        <sql dbms="postgresql">
+            CREATE TYPE SecUserSignType AS ENUM
+            (
+            'ALIAS', 'EMAIL', 'ID', 'NID'
+            )
+        </sql>
+        <sql dbms="postgresql">
+            CREATE TYPE SecUserSignStateType AS ENUM
+            (
+            'INVALID', 'LOCKED', 'VALID', 'VALIDATING'
+            )
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

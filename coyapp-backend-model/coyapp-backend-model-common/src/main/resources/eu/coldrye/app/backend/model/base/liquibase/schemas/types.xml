@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+    standard sql types
+    -->
+    <property
+        name="CHAR"
+        value="CHAR"/>
+
+    <property
+        name="VARCHAR"
+        value="VARCHAR"/>
+
+    <property
+        name="VARCHAR"
+        value="VARCHAR"
+        dbms="oracle"/>
+
+    <property
+        name="UuidType"
+        value="${CHAR}(40)"/>
+
+    <property
+        name="TimeStampType"
+        value="TIMESTAMP"/>
+
+    <!-- TODO:oracle distinguishes between bytes and characters-->
+    <property
+        name="NameType"
+        value="VARCHAR2(200)"/>
+
+    <!-- TODO:oracle distinguishes between bytes and characters-->
+    <property
+        name="DescriptionType"
+        value="VARCHAR2(4096)"/>
+
+    <property
+        name="EntityStateType"
+        value="ENUM('ACTIVE', 'DELETED')"/>
+
+    <property
+        name="OwnerRoleType"
+        value="ENUM('SYSTEM', 'USER')"/>
+
+    <property
+        name="UserType"
+        value="ENUM('CLIENT', 'SERVICE', 'USER')"/>
+
+    <!--
+    for postgres support we need to declare custom enum types
+    https://www.postgresql.org/docs/9.1/static/datatype-enum.html
+    -->
+    <property name="EntityStateType" value="EntityStateType" dbms="postgresql"/>
+    <property name="OwnerRoleType" value="OwnerRoleType" dbms="postgresql"/>
+    <property name="UserType" value="UserType" dbms="postgresql"/>
+
+</databaseChangeLog>

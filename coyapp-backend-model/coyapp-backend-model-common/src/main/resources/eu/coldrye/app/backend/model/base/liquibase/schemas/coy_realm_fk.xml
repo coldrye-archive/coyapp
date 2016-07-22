@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet
+        id="coyapp-base-coy_realm_fk"
+        author="cklein"
+        context="deploy"
+        runAlways="false">
+        <preConditions>
+            <and>
+                <changeSetExecuted
+                    id="coyapp-base-coy_realm"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/base/liquibase/schemas/coy_realm.xml"/>
+                <changeSetExecuted
+                    id="coyapp-base-coy_user"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/base/liquibase/schemas/coy_user.xml"/>
+            </and>
+        </preConditions>
+        <addForeignKeyConstraint
+            constraintName="FK_COY_REALM_REALM_ID"
+            baseTableName="coy_realm"
+            baseColumnNames="realm_id"
+            referencedTableName="coy_realm"
+            referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+            constraintName="FK_COY_REALM_CREATED_BY"
+            baseTableName="coy_realm"
+            baseColumnNames="created_by"
+            referencedTableName="coy_user"
+            referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+            constraintName="FK_COY_REALM_MODIFIED_BY"
+            baseTableName="coy_realm"
+            baseColumnNames="modified_by"
+            referencedTableName="coy_user"
+            referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

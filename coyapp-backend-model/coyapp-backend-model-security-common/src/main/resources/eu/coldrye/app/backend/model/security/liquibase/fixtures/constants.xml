@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property
+        name="SYSTEM_ROLE_ID"
+        value="32ab3e11-07b9-4a6f-b475-b90bcfbe31d2"/>
+
+    <property
+        name="SYSTEM_ROLE_NAME"
+        value="System"/>
+
+    <property
+        name="SYSTEM_GROUP_ID"
+        value="59d88b15-0c68-459c-9882-797d24c1d2aa"/>
+
+    <property
+        name="SYSTEM_GROUP_NAME"
+        value="System"/>
+
+</databaseChangeLog>

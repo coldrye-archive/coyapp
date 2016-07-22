@@ -1,0 +1,1 @@
+Search.setIndex({envversion:49,filenames:["index","security/index"],objects:{},objnames:{},objtypes:{},terms:{content:0,index:[],modul:[],page:[],search:[],secur:0},titles:["CoyApp Documentation","CoyApp Security"],titleterms:{coyapp:[0,1],document:0,indice:[],secur:1,tabl:[]}})

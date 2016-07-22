@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property
+        name="SecUserStateType"
+        value="ENUM('ACTIVE', 'INACTIVE', 'DEACTIVATED', 'BANNED', 'BLOCKED', 'SIGNED_OFF', 'SIGNED_ON', 'VERIFIED')"/>
+
+    <property
+        name="SecUserAuthType"
+        value="ENUM('PASS', 'LDAP', 'OAUT')"/>
+
+    <property
+        name="SecUserSignType"
+        value="ENUM('ALIAS', 'EMAIL', 'ID', 'NID')"/>
+
+    <property
+        name="SecUserSignStateType"
+        value="ENUM('INVALID', 'LOCKED', 'VALID', 'VALIDATING')"/>
+
+    <!--
+    for postgres support we need to declare custom enum types
+    https://www.postgresql.org/docs/9.1/static/datatype-enum.html
+    -->
+    <property name="SecUserStateType" value="SecUserStateType" dbms="postgresql"/>
+    <property name="SecUserAuthType" value="SecUserAuthType" dbms="postgresql"/>
+    <property name="SecUserSignType" value="SecUserSignType" dbms="postgresql"/>
+    <property name="SecUserSignStateType" value="SecUserSignStateType" dbms="postgresql"/>
+
+</databaseChangeLog>

@@ -1,0 +1,58 @@
+/*
+ * Copyright 2016 coldrye.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package eu.coldrye.app.backend.model.security.schema.acl.entities;
+
+import eu.coldrye.app.backend.model.base.Describable;
+import eu.coldrye.app.backend.model.base.Named;
+import eu.coldrye.app.backend.model.security.schema.entities.SecuritySchemaEntry;
+import javax.persistence.DiscriminatorValue;
+
+/**
+ * TBD:always of IdGenerationStrategyType.WELL_KNOWN
+ *
+ * @author Carsten Klein <trancesilken@gmail.com>
+ */
+@DiscriminatorValue("PERM")
+public class PermissionSecuritySchemaEntry
+        extends SecuritySchemaEntry
+        implements Named,
+                   Describable
+{
+
+    @Override
+    public String getDescription()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getName()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setDescription(String description)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setName(String name)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}

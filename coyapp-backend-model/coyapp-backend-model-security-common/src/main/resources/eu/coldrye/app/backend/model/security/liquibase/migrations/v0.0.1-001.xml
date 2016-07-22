@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet
+        id="coyapp-sec-v0.0.1-001"
+        author="cklein"
+        context="deploy,migrate"
+        runAlways="false">
+        <preConditions>
+            <and>
+                <changeSetExecuted
+                    id="coyapp-base-coy_sec_realm"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/security/liquibase/schemas/sec_realm.xml"/>
+                <changeSetExecuted
+                    id="coyapp-base-coy_sec_user"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/security/liquibase/schemas/sec_user.xml"/>
+                <changeSetExecuted
+                    id="coyapp-base-coy_sec_group"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/security/liquibase/schemas/sec_group.xml"/>
+                <changeSetExecuted
+                    id="coyapp-base-coy_sec_role"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/security/liquibase/schemas/sec_role.xml"/>
+                <changeSetExecuted
+                    id="coyapp-base-coy_sec_user_group"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/security/liquibase/schemas/sec_user_group.xml"/>
+                <changeSetExecuted
+                    id="coyapp-base-coy_sec_group_role"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/security/liquibase/schemas/sec_group_role.xml"/>
+            </and>
+        </preConditions>
+        <sql>
+            INSERT INTO coy_sec_realm
+            (
+            id, description
+            )
+            SELECT id, CONCAT('The ', name, ' realm')
+            FROM coy_realm
+            WHERE id NOT IN (SELECT id FROM coy_sec_realm)
+        </sql>
+        <sql>
+            INSERT INTO coy_sec_user
+            (
+            id, user_state, description
+            )
+            SELECT id, 'ACTIVE', CONCAT('The ', name, ' user')
+            FROM coy_user
+            WHERE id NOT IN (SELECT id FROM coy_sec_user)
+        </sql>
+        <sql>
+            INSERT INTO coy_sec_role
+            (
+            id, entity_state, owner_role, realm_id,
+            created_when, created_by, name, description
+            )
+            VALUES
+            (
+            '${SYSTEM_ROLE_ID}', 'ACTIVE', 'SYSTEM', '${SYSTEM_REALM_ID}',
+            CURRENT_TIMESTAMP, '${SYSTEM_USER_ID}', '${SYSTEM_ROLE_NAME}',
+            'The ${SYSTEM_ROLE_NAME} role'
+            )
+        </sql>
+        <sql>
+            INSERT INTO coy_sec_group
+            (
+            id, entity_state, owner_role, realm_id,
+            created_when, created_by, name, description
+            )
+            VALUES
+            (
+            '${SYSTEM_GROUP_ID}', 'ACTIVE', 'SYSTEM', '${SYSTEM_REALM_ID}',
+            CURRENT_TIMESTAMP, '${SYSTEM_USER_ID}', '${SYSTEM_GROUP_NAME}',
+            'The ${SYSTEM_GROUP_NAME} group'
+            )
+        </sql>
+        <sql>
+            INSERT INTO coy_sec_group_role
+            (
+            entity_state, owner_role, realm_id, created_when,
+            created_by, group_id, role_id
+            )
+            VALUES
+            (
+            'ACTIVE', 'SYSTEM', '${SYSTEM_REALM_ID}', CURRENT_TIMESTAMP,
+            '${SYSTEM_USER_ID}', '${SYSTEM_GROUP_ID}', '${SYSTEM_ROLE_ID}'
+            )
+        </sql>
+        <sql>
+            INSERT INTO coy_sec_user_group
+            (
+            entity_state, owner_role, realm_id, created_when,
+            created_by, user_id, group_id
+            )
+            VALUES
+            (
+            'ACTIVE', 'SYSTEM', '${SYSTEM_REALM_ID}', CURRENT_TIMESTAMP,
+            '${SYSTEM_USER_ID}', '${SYSTEM_USER_ID}', '${SYSTEM_GROUP_ID}'
+            )
+        </sql>
+    </changeSet>
+</databaseChangeLog>

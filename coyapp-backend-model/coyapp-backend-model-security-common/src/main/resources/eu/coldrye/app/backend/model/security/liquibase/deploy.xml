@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <include
+        file="eu/coldrye/app/backend/model/base/liquibase/schemas/types.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/types.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_types.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_realm.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_user.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_user_state.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_user_credential.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_user_sign.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_user_sign_state.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_group.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_user_group.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_role.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_inherited_role.xml"/>
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/schemas/coy_sec_group_role.xml"/>
+
+    <!-- migrate to latest version -->
+    <include
+        file="eu/coldrye/app/backend/model/security/liquibase/migrate.xml"/>
+
+</databaseChangeLog>

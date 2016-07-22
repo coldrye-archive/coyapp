@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet
+        id="coyapp-base-001_defaults"
+        author="cklein"
+        context="deploy"
+        runAlways="false">
+        <preConditions>
+            <and>
+                <changeSetExecuted
+                    id="coyapp-base-coy_realm"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/base/liquibase/schemas/coy_realm.xml"/>
+                <changeSetExecuted
+                    id="coyapp-base-coy_user"
+                    author="cklein"
+                    changeLogFile="eu/coldrye/app/backend/model/base/liquibase/schemas/coy_user.xml"/>
+            </and>
+        </preConditions>
+        <sql>
+            INSERT INTO coy_realm (
+            id, entity_state, owner_role, realm_id,
+            created_when, created_by, name
+            )
+            VALUES (
+            '${SYSTEM_REALM_ID}', 'ACTIVE', 'SYSTEM', NULL,
+            CURRENT_TIMESTAMP, '${SYSTEM_USER_ID}', '${SYSTEM_USER_NAME}'
+            )
+        </sql>
+        <sql>
+            INSERT INTO coy_user (
+            id, entity_state, owner_role, realm_id,
+            created_when, created_by, user_type, name
+            )
+            VALUES (
+            '${SYSTEM_USER_ID}', 'ACTIVE', 'SYSTEM', '${SYSTEM_REALM_ID}',
+            CURRENT_TIMESTAMP, '${SYSTEM_USER_ID}', 'USER', '${SYSTEM_REALM_NAME}'
+            )
+        </sql>
+    </changeSet>
+</databaseChangeLog>

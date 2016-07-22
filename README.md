@@ -8,6 +8,13 @@ applications and services.
 
 ## Maven
 
+### Maven Coordinates
+
+```
+GroupId: coyapp
+ArtifactId: coyapp-parent
+```
+
 ### Versioning
 
-For POM projects we use a simple one digit versioning scheme, i.e. 1-SNAPSHOT.
+For our projects we use a semantic versioning scheme, e.g. 0.0.1-SNAPSHOT.
